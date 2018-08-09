@@ -1,0 +1,1 @@
+var app = angular.module('appFerreira', ['ngMessages', 'ngRoute']);

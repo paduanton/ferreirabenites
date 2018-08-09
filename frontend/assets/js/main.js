@@ -376,9 +376,7 @@
 
 	};
 
- 
-  /* Back to Top
-	* ------------------------------------------------------ */
+
 	var ssBackToTop = function() {
 
 		var pxShow  = 500,         // height on which the button will show

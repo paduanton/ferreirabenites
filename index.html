@@ -1,35 +1,28 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en"> <!--<![endif]-->
+<html class="no-js" lang="pt-br" ng-app="appFerreira">
 <head>
+    <base href="/"/>
     <meta charset="utf-8">
     <title>Ferreira Benites</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
-
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/vendor.css">
-    <link rel="stylesheet" href="css/main.css">
-
-    <script src="js/modernizr.js"></script>
-    <script src="js/pace.min.js"></script>
-
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="frontend/assets/css/base.css">
+    <link rel="stylesheet" href="frontend/assets/css/vendor.css">
+    <link rel="stylesheet" href="frontend/assets/css/main.css">
+    <link rel="icon" href="frontend/assets/img/favicon.ico" type="image/x-icon">
 
 </head>
 <body id="top">
 <header>
     <div class="header-logo">
-        <a href="index.html">Ferreira Benites</a>
+        <a href="/">Ferreira Benites</a>
     </div>
-    <a id="header-menu-trigger" href="#0">
+    <a id="header-menu-trigger" href="">
         <span class="header-menu-text">Menu</span>
         <span class="header-menu-icon"></span>
     </a>
     <nav id="menu-nav-wrap">
-        <a href="#0" class="close-button" title="close"><span>Fechar</span></a>
+        <a href="#" class="close-button" title="close"><span>Fechar</span></a>
         <h3>Menu</h3>
         <ul class="nav-list">
             <li class="current"><a class="smoothscroll" href="#home" title="">Principal</a></li>
@@ -41,14 +34,12 @@
     </nav>
 </header>
 <section id="home">
-
     <div class="overlay"></div>
-
     <div class="home-content-table">
         <div class="home-content-tablecell">
             <div class="row">
                 <div class="col-twelve">
-                    <img src="images/logo_transp_fb.png" alt="Author image">
+                    <img src="frontend/assets/img/logo_transp_fb.png" alt="Author image">
                     <div class="more animate-intro">
                         <a class="smoothscroll button stroke" href="#about">
                             Saiba mais
@@ -66,7 +57,6 @@
     </div>
 </section>
 <section id="about">
-
     <div class="row about-wrap">
         <div class="col-full">
             <div class="about-profile-bg"></div>
@@ -80,10 +70,8 @@
     </div>
 </section>
 <section id="services">
-
     <div class="overlay"></div>
     <div class="gradient-overlay"></div>
-
     <div class="row narrow section-intro with-bottom-sep animate-this">
         <div class="col-full">
 
@@ -94,7 +82,6 @@
                 com profissionais aptos para oferecer seu produto com propriedade e que possuam conhecimento do seu
                 negócio. Para isso, a Ferreira Benites Consultoria está no mercado de Licitações, trazendo inovação,
                 qualidade e agilidade para as suas demandas.</p>
-
         </div>
     </div>
     <div class="row services-content">
@@ -109,20 +96,15 @@
                 </div>
             </div>
             <div class="bgrid service-item animate-this">
-
                 <span class="icon"><i class="icon-folder"></i></span>
-
                 <div class="service-content">
                     <h3 class="h05">Documentações</h3>
-
                     <p>Esteja sempre com a documentação em dia e preparado para as oportunidades.
                     </p>
                 </div>
             </div>
             <div class="bgrid service-item animate-this">
-
                 <span class="icon"><i class="icon-mouse"></i></span>
-
                 <div class="service-content">
                     <h3 class="h05">Cadastros</h3>
 
@@ -131,12 +113,9 @@
                 </div>
             </div>
             <div class="bgrid service-item animate-this">
-
                 <span class="icon"><i class="icon-pen"></i></span>
-
                 <div class="service-content">
                     <h3 class="h05">Contratos</h3>
-
                     <p>Contamos com profissionais que atuam na repactuação, reequilíbrio econômico-financeiro, renovação
                         contratual e gestão dos contratos com a Administração Pública.
                     </p>
@@ -146,9 +125,7 @@
     </div>
 </section>
 <section id="portfolio">
-
     <div class="intro-wrap">
-
         <div class="row narrow section-intro with-bottom-sep animate-this">
             <div class="col-twelve">
                 <h3>Competências</h3>
@@ -170,7 +147,8 @@
                     <div class="item-wrap animate-this"
                          data-src="images/portfolio/gallery/g-black-and-white-board-game-chess.jpg" data-sub-html="#01">
                         <a href="#" class="overlay">
-                            <img src="images/portfolio/black-and-white-board-game-chess.jpg" alt="Assessoria">
+                            <img src="frontend/assets/img/portfolio/black-and-white-board-game-chess.jpg"
+                                 alt="Assessoria">
                             <div class="item-text">
 	                     	<span class="folio-types">
 		     					      Assessoria
@@ -195,7 +173,8 @@
                          data-src="images/portfolio/gallery/g-architecture-black-and-white-buildings.jpg"
                          data-sub-html="#02">
                         <a href="#" class="overlay">
-                            <img src="images/portfolio/architecture-black-and-white-buildings.jpg" alt="Assessoria">
+                            <img src="frontend/assets/img/portfolio/architecture-black-and-white-buildings.jpg"
+                                 alt="Assessoria">
                             <div class="item-text">
 	                     	<span class="folio-types">
 		     					      Prospecção
@@ -284,8 +263,7 @@
 
             <h5>Envie-nos uma mensagem</h5>
 
-            <!-- form -->
-            <form name="contactForm" id="contactForm" method="post">
+            <form name="contactForm" id="contactForm" ng-submit="salvarUsuario()" novalidate>
 
                 <div class="form-field">
                     <input name="contactName" type="text" id="contactName" placeholder="Nome" value="" minlength="2"
@@ -313,7 +291,6 @@
 
                 <div class="form-field">
                     <button class="submitform">Enviar</button>
-
                     <div id="submit-loader">
                         <div class="text-loader">Enviando...</div>
                         <div class="s-loader">
@@ -383,7 +360,7 @@
             <div class="col-three tab-full footer-social">
 
                 <ul class="list-links">
-                    <img class="circle" src="images/avatars/user-08.jpg" alt="Author image">
+                    <img class="circle" src="frontend/assets/img/avatars/user-08.jpg" alt="Author image">
                 </ul>
             </div>
 
@@ -432,8 +409,17 @@
     <div id="loader"></div>
 </div>
 
-<script src="js/jquery-2.1.3.min.js"></script>
-<script src="js/plugins.js"></script>
-<script src="js/main.js"></script>
+<script src="frontend/assets/js/modernizr.js"></script>
+<script src="frontend/assets/js/pace.min.js"></script>
+<script src="frontend/assets/js/jquery-2.1.3.min.js"></script>
+<script src="frontend/assets/js/plugins.js"></script>
+<script src="frontend/assets/js/main.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular-route.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular-messages.min.js"></script>
+
+<script src="frontend/angularjs/app.js"></script>
+<script src="frontend/angularjs/controllers/home.js"></script>
 </body>
 </html>
