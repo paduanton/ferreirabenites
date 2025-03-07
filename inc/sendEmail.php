@@ -11,6 +11,9 @@ if($_POST) {
    $subject = trim(stripslashes($_POST['contactSubject']));
    $contact_message = trim(stripslashes($_POST['contactMessage']));
 
+   $message = "";
+   $error = [];
+
    // Check Name
 	if (strlen($name) < 2) {
 		$error['name'] = "Insira seu nome.";
@@ -19,10 +22,7 @@ if($_POST) {
 	if (!preg_match('/^[a-z0-9&\'\.\-_\+]+@[a-z0-9\-]+\.([a-z0-9\-]+\.)*+[a-z]{2}/is', $email)) {
 		$error['email'] = "Insira um endereço de email válido.";
 	}
-	// Check Message
-	if (strlen($contact_message) < 15) {
-		$error['message'] = "Insira sua mensagem. Ela deve conter ao menos 15 caracteres.";
-	}
+	
    // Subject
 	if ($subject == '') { $subject = "Contact Form Submission"; }
 

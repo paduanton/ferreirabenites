@@ -3006,3 +3006,21 @@ footer h4.h05::after {
     display: none;
   }
 }
+
+.footer-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.perfil-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.perfil {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
