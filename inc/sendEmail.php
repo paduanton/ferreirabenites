@@ -11,56 +11,51 @@ if($_POST) {
    $subject = trim(stripslashes($_POST['contactSubject']));
    $contact_message = trim(stripslashes($_POST['contactMessage']));
 
-   $message = "";
-   $error = [];
-
    // Check Name
 	if (strlen($name) < 2) {
-		$error['name'] = "Insira seu nome.";
+		echo "Insira seu nome";
+		exit();
 	}
 	// Check Email
 	if (!preg_match('/^[a-z0-9&\'\.\-_\+]+@[a-z0-9\-]+\.([a-z0-9\-]+\.)*+[a-z]{2}/is', $email)) {
-		$error['email'] = "Insira um endereço de email válido.";
+		echo "Insira um endereço de email válido."; 
+		exit();
 	}
 	
-   // Subject
-	if ($subject == '') { $subject = "Contact Form Submission"; }
+	$formMessageFormatted = " 
+	<br>Formulário via site
+	<br>--------------------------------------------<br>
+	<br><strong>Nome:</strong> $name
+	<br><strong>Email:</strong> $email
+	<br><strong>Assunto:</strong> $subject
+	<br><strong>Mensagem:</strong> $contact_message
+	<br><br>--------------------------------------------
+	";
+	$boundary = "XYZ-" . date("dmYis") . "-ZYX";
 
+	$message = "--$boundary\n"; 
+	$message.= "Content-Transfer-Encoding: 8bits\n"; 
+	$message.= "Content-Type: text/html; charset=\"utf-8\"\n\n";
+	$message.= "$formMessageFormatted\n";
 
-   // Set Message
-   $message .= "De: " . $name . "<br />";
-	$message .= "Email: " . $email . "<br />";
-   $message .= "Mensagem: <br />";
-   $message .= $contact_message;
-   $message .= "<br /> ----- <br /> Este email foi enviado a partir do formulário de contato do site. <br />";
+	$headers = "MIME-Version: 1.0\n";
+	$headers.= "From: $siteOwnersEmail\n";
+	$headers.= "Reply-To: $email\n";
+	$headers.= "Content-type: multipart/mixed; boundary=\"$boundary\"\r\n";  
+	$headers.= "$boundary\n"; 
 
-   // Set From: header
-   $from =  $name . " <" . $email . ">";
+	var_dump($message);
+	var_dump($headers);
+	var_dump($subject);
+	var_dump($siteOwnersEmail);
 
-   // Email Headers
-    $headers = 'From: contato@ferreirabenites.com.br' . "\r\n" .
-        'Reply-To: contato@ferreirabenites.com.br' . "\r\n" .
-        'X-Mailer: PHP/' . phpversion();
+	$mail = mail($siteOwnersEmail, $subject, $message, $headers);
 
-
-   if (!$error) {
-
-      $mail = mail($siteOwnersEmail, $subject, $message, $headers);
-
-		if ($mail) { echo "OK"; }
-      else { echo "Algo deu errado. Tente novamente."; }
-		
-	} # end if - no validation error
-
-	else {
-
-		$response = (isset($error['name'])) ? $error['name'] . "<br /> \n" : null;
-		$response .= (isset($error['email'])) ? $error['email'] . "<br /> \n" : null;
-		$response .= (isset($error['message'])) ? $error['message'] . "<br />" : null;
-		
-		echo $response;
-
-	} # end if - there was a validation error
+	if ($mail) {
+		echo "Enviado com sucesso!"; 
+	} else {
+		echo "Algo deu errado. Tente novamente.";
+	}
 
 }
 
